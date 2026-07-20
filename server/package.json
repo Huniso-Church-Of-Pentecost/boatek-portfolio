@@ -1,0 +1,24 @@
+{
+  "name": "foster-portfolio-server",
+  "version": "1.0.0",
+  "description": "Backend server for Foster's portfolio website — serves the static site and handles the contact form via Nodemailer.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.2.0",
+    "helmet": "^7.1.0",
+    "nodemailer": "^9.0.3"
+  },
+  "author": "Foster / Boatek Labs",
+  "license": "MIT"
+}

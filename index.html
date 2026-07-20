@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foster — Full-Stack Web Developer | Fast, Modern, High-Performance Websites</title>
+  <meta name="description" content="Foster builds fast, modern, high-performance websites — business sites, landing pages, portfolios, and full-stack web applications. Clean code, responsive design, on-time delivery.">
+  <meta name="keywords" content="web developer, full stack developer, node.js developer, freelance web developer, landing page design, business website">
+  <meta name="author" content="Foster">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Foster — Full-Stack Web Developer">
+  <meta property="og:description" content="Building fast, modern & high-performance websites.">
+  <meta property="og:type" content="website">
+
+  <!-- Structured data for search engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Foster",
+    "jobTitle": "Full-Stack Web & AI Developer",
+    "url": "https://boateklabs.dev",
+    "email": "mailto:boateklabs@gmail.com",
+    "telephone": "+233537045514",
+    "address": { "@type": "PostalAddress", "addressCountry": "GH" },
+    "sameAs": [],
+    "knowsAbout": ["Node.js", "Express", "JavaScript", "Python", "REST APIs", "Web Development"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Foster — Full-Stack Web Developer",
+    "url": "https://boateklabs.dev"
+  }
+  </script>
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icon-192.png">
+  <link rel="apple-touch-icon" href="images/icon-192.png">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#070b14">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Foster Dev">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/features.css">
+
+  <!-- Theme applied before paint to avoid a flash of the wrong theme -->
+  <script src="js/theme-init.js"></script>
+</head>
+<body>
+
+  <!-- ============ CURSOR GLOW ============ -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- ============ BACKGROUND CANVAS (network mesh particles) ============ -->
+  <canvas id="meshCanvas" aria-hidden="true"></canvas>
+
+  <!-- ============ SCROLL PROGRESS BAR ============ -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">
+        <span class="nav-logo-bracket">&lt;</span>Foster<span class="nav-logo-bracket">/&gt;</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link active" data-section="home">Home</a>
+        <a href="#about" class="nav-link" data-section="about">About</a>
+        <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+        <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+        <a href="#services" class="nav-link" data-section="services">Services</a>
+        <a href="#why" class="nav-link" data-section="why">Why Hire Me</a>
+        <a href="#testimonials" class="nav-link" data-section="testimonials">Testimonials</a>
+        <a href="#faq" class="nav-link" data-section="faq">FAQ</a>
+        <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+      </nav>
+
+      <a href="#contact" class="btn btn-nav-cta">
+        <i class="fa-solid fa-paper-plane"></i><span>Hire Me</span>
+      </a>
+
+      <div class="nav-utility">
+        <button class="icon-btn js-palette-trigger" id="paletteBtn" aria-label="Open quick search" title="Quick search (Ctrl+K)">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <button class="icon-btn js-theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle theme">
+          <i class="fa-solid fa-moon js-theme-icon"></i>
+        </button>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE MENU OVERLAY ============ -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-menu-links">
+      <a href="#home" data-section="home">Home</a>
+      <a href="#about" data-section="about">About</a>
+      <a href="#skills" data-section="skills">Skills</a>
+      <a href="#projects" data-section="projects">Projects</a>
+      <a href="#services" data-section="services">Services</a>
+      <a href="#why" data-section="why">Why Hire Me</a>
+      <a href="#testimonials" data-section="testimonials">Testimonials</a>
+      <a href="#faq" data-section="faq">FAQ</a>
+      <a href="#contact" data-section="contact">Contact</a>
+    </nav>
+    <div class="mobile-menu-utility">
+      <button class="icon-btn js-palette-trigger" id="paletteBtnMobile" aria-label="Open quick search" title="Quick search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button class="icon-btn js-theme-toggle" id="themeToggleMobile" aria-label="Toggle light/dark theme" title="Toggle theme">
+        <i class="fa-solid fa-moon js-theme-icon"></i>
+      </button>
+      <button class="icon-btn" id="accessibilityToggleMobile" aria-label="Open accessibility options" title="Accessibility options">
+        <i class="fa-solid fa-universal-access"></i>
+      </button>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ============ HOME / HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero-glow hero-glow-1" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow-2" aria-hidden="true"></div>
+
+      <div class="hero-inner container">
+        <p class="greeting-badge reveal-up" id="greetingBadge"></p>
+        <p class="eyebrow reveal-up">// available for new projects</p>
+
+        <h1 class="hero-headline reveal-up" style="animation-delay:.05s">
+          Building Fast, Modern &amp;
+          <span class="gradient-text">High-Performance</span> Websites
+        </h1>
+
+        <p class="hero-sub reveal-up" style="animation-delay:.15s">
+          I design and build responsive business websites, portfolios, landing pages,
+          and full-stack web applications — engineered to load fast, look premium,
+          and convert visitors into clients.
+        </p>
+
+        <div class="hero-typing reveal-up" style="animation-delay:.25s">
+          <span class="mono-tag">$</span>
+          <span id="typingText" class="typing-text"></span><span class="typing-cursor">|</span>
+        </div>
+
+        <div class="hero-cta reveal-up" style="animation-delay:.35s">
+          <a href="#projects" class="btn btn-primary magnetic">
+            <i class="fa-solid fa-diagram-project"></i><span>View Projects</span>
+          </a>
+          <a href="#contact" class="btn btn-outline magnetic">
+            <i class="fa-solid fa-paper-plane"></i><span>Hire Me</span>
+          </a>
+          <a href="resume.html" target="_blank" rel="noopener" class="btn btn-outline magnetic">
+            <i class="fa-solid fa-file-arrow-down"></i><span>Resume</span>
+          </a>
+          <button type="button" class="btn btn-outline magnetic" id="bookCallBtn">
+            <i class="fa-solid fa-calendar-check"></i><span>Book a Call</span>
+          </button>
+        </div>
+
+        <div class="hero-stats reveal-up" style="animation-delay:.45s">
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="40">0</span><span class="hero-stat-suffix">+</span>
+            <span class="hero-stat-label">Projects Shipped</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="98">0</span><span class="hero-stat-suffix">%</span>
+            <span class="hero-stat-label">Client Satisfaction</span>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="24">0</span><span class="hero-stat-suffix">h</span>
+            <span class="hero-stat-label">Avg. Response Time</span>
+          </div>
+        </div>
+      </div>
+
+      <a href="#about" class="scroll-indicator" aria-label="Scroll to About section">
+        <span class="scroll-indicator-line"></span>
+        <span class="scroll-indicator-text">scroll</span>
+      </a>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about">
+      <div class="container">
+        <p class="eyebrow reveal-on-scroll">// 01 about</p>
+        <h2 class="section-title reveal-on-scroll">The developer behind the code</h2>
+
+        <div class="about-grid">
+          <div class="about-copy reveal-on-scroll">
+            <p class="about-lead">
+              I'm Foster — a full-stack web developer who turns ideas into fast,
+              reliable, production-ready products. I run <strong>Boatek Labs</strong>,
+              a small studio focused on building web apps, tools, and platforms that
+              real businesses depend on.
+            </p>
+            <p>
+              My work spans everything from marketing sites that need to load in
+              under a second, to full applications with real-time features,
+              authentication, and third-party integrations. I care about the details
+              that clients feel even if they can't name them: the way a button responds
+              to a click, the way a page loads without a flash of unstyled content,
+              the way a form tells you exactly what went wrong.
+            </p>
+            <p>
+              Every project starts with a conversation about your goals — not a
+              template. What you get back is code built to be maintained, extended,
+              and handed off cleanly.
+            </p>
+
+            <div class="about-tags">
+              <span class="tag">Problem Solver</span>
+              <span class="tag">Detail-Obsessed</span>
+              <span class="tag">Deadline-Driven</span>
+              <span class="tag">Clear Communicator</span>
+            </div>
+          </div>
+
+          <div class="about-visual reveal-on-scroll">
+            <div class="code-window">
+              <div class="code-window-bar">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+                <span class="code-window-title">profile.js</span>
+              </div>
+              <pre class="code-window-body"><code><span class="code-key">const</span> <span class="code-var">developer</span> = {
+  <span class="code-prop">name</span>: <span class="code-str">'Foster'</span>,
+  <span class="code-prop">studio</span>: <span class="code-str">'Boatek Labs'</span>,
+  <span class="code-prop">stack</span>: [<span class="code-str">'Node.js'</span>, <span class="code-str">'Express'</span>,
+    <span class="code-str">'JavaScript'</span>, <span class="code-str">'REST APIs'</span>],
+  <span class="code-prop">focus</span>: <span class="code-str">'performance + polish'</span>,
+  <span class="code-prop">availability</span>: <span class="code-str">'open'</span>,
+  <span class="code-prop">respondsIn</span>: <span class="code-str">'&lt; 24h'</span>
+};</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section section-alt" id="skills">
+      <div class="container">
+        <p class="eyebrow reveal-on-scroll">// 02 skills</p>
+        <h2 class="section-title reveal-on-scroll">Tools I build with</h2>
+        <p class="section-sub reveal-on-scroll">A focused stack, used deeply rather than broadly.</p>
+
+        <div class="skills-grid" id="skillsGrid">
+          <!-- Skill cards injected/animated via JS reveal, static markup below -->
+          <div class="skill-card reveal-on-scroll">
+            <div class="skill-icon"><i class="fa-brands fa-html5"></i></div>
+            <h3>HTML</h3>
+            <p>Semantic, accessible markup built to last.</p>
+          </div>
+          <div class="skill-card reveal-on-scroll">
+            <div class="skill-icon"><i class="fa-brands fa-css3-alt"></i></div>
+            <h3>CSS</h3>
+            <p>Modern layout systems, animation, responsive design.</p>
+          </div>
+          <div class="skill-card reveal-on-scroll">
+            <div class="skill-icon"><i class="fa-brands fa-js"></i></div>
+            <h3>JavaScript</h3>
+            <p>Clean, dependency-light, framework-free logic.</p>
+          </div>
+          <div class="skill-card reveal-on-scroll">
+            <div class="skill-icon"><i class="fa-brands fa-node-js"></i></div>
+            <h3>Node.js</h3>
+            <p>Fast, event-driven backends and services.</p>
+          </div>
+          <div class="skill-card reveal-on-scroll">
+            <div class="skill-icon"><i class="fa-solid fa-server"></i></div>
+            <h3>Express</h3>
+            <p>Lightweight APIs, routing, and middleware.</p>
+          </div>
+          <div class="skill-card reveal-on-scroll">
+            <div class="skill-icon"><i class="fa-brands fa-git-alt"></i></div>
+            <h3>Git</h3>
+            <p>Version control, branching, clean history.</p>
+          </div>
+          <div class="skill-card reveal-on-scroll">
+            <div class="skill-icon"><i class="fa-brands fa-github"></i></div>
+            <h3>GitHub</h3>
+            <p>Collaboration, CI, and project management.</p>
+          </div>
+          <div class="skill-card reveal-on-scroll">
+            <div class="skill-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+            <h3>Responsive Design</h3>
+            <p>Pixel-consistent from 320px to 4K.</p>
+          </div>
+          <div class="skill-card reveal-on-scroll">
+            <div class="skill-icon"><i class="fa-solid fa-plug"></i></div>
+            <h3>REST APIs</h3>
+            <p>Designing and consuming clean, documented APIs.</p>
+          </div>
+          <div class="skill-card reveal-on-scroll">
+            <div class="skill-icon"><i class="fa-solid fa-gauge-high"></i></div>
+            <h3>Performance Optimization</h3>
+            <p>Sub-second loads, lean assets, real Lighthouse scores.</p>
+          </div>
+        </div>
+
+        <div class="github-stats glass reveal-on-scroll" id="githubStats" data-github-user="Huniso-Church-Of-Pentecost">
+          <div class="github-stats-header">
+            <i class="fa-brands fa-github"></i>
+            <span>Live GitHub activity</span>
+          </div>
+          <div class="github-stats-grid" id="githubStatsGrid">
+            <span class="github-stats-status">Loading GitHub stats…</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section" id="projects">
+      <div class="container">
+        <p class="eyebrow reveal-on-scroll">// 03 projects</p>
+        <h2 class="section-title reveal-on-scroll">Selected work</h2>
+        <p class="section-sub reveal-on-scroll">A sample of the kinds of products I build end to end.</p>
+
+        <div class="projects-toolbar reveal-on-scroll">
+          <div class="projects-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="projectSearch" placeholder="Search projects…" aria-label="Search projects">
+          </div>
+          <div class="projects-filters" id="projectsFilters" role="group" aria-label="Filter projects by technology">
+            <button type="button" class="filter-chip active" data-filter="all">All</button>
+          </div>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid">
+          <!-- Project cards -->
+          <article class="project-card reveal-on-scroll" data-case-problem="The client had no online presence beyond a Facebook page and was fielding reservation calls manually during service hours." data-case-approach="Built a fast, mobile-first site with an online menu, a table reservation form wired to email, and location/hours details above the fold." data-case-result="Replace with the real outcome once this is a live client project — e.g. reduction in phone interruptions during service, or reservation volume through the site.">
+            <div class="project-thumb" data-label="Restaurant Website">
+              <div class="project-thumb-glow"></div>
+            </div>
+            <div class="project-body">
+              <h3>Restaurant Website</h3>
+              <p>Menu showcase, table reservations, and location details built for fast mobile ordering.</p>
+              <div class="badge-row">
+                <span class="badge">HTML</span><span class="badge">CSS</span><span class="badge">JS</span><span class="badge">Node.js</span>
+              </div>
+              <div class="project-links">
+                <button type="button" class="link-icon js-case-study-btn"><i class="fa-solid fa-magnifying-glass-chart"></i> Case Study</button>
+                <a href="#" class="link-icon" aria-label="GitHub repository"><i class="fa-brands fa-github"></i> Code</a>
+                <a href="#" class="link-icon" aria-label="Live demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal-on-scroll" data-case-problem="Prospective parents couldn't find admissions info or staff contacts without calling the front office." data-case-approach="Structured an admissions flow, a searchable staff directory, and a simple news/announcements section the office could update without a developer." data-case-result="Replace with the real outcome — e.g. drop in admissions phone queries, or time saved publishing updates.">
+            <div class="project-thumb" data-label="School Website">
+              <div class="project-thumb-glow"></div>
+            </div>
+            <div class="project-body">
+              <h3>School Website</h3>
+              <p>Admissions, staff directory, and news portal with an accessible, content-managed layout.</p>
+              <div class="badge-row">
+                <span class="badge">Node.js</span><span class="badge">Express</span><span class="badge">JS</span>
+              </div>
+              <div class="project-links">
+                <button type="button" class="link-icon js-case-study-btn"><i class="fa-solid fa-magnifying-glass-chart"></i> Case Study</button>
+                <a href="#" class="link-icon"><i class="fa-brands fa-github"></i> Code</a>
+                <a href="#" class="link-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal-on-scroll" data-case-problem="The hotel relied entirely on third-party booking platforms and paid commission on every reservation." data-case-approach="Built a direct room-booking flow, a photo gallery, and an amenities page designed to move visitors from browsing to booking without leaving the site." data-case-result="Replace with the real outcome — e.g. share of bookings moved off commission-based platforms.">
+            <div class="project-thumb" data-label="Hotel Website">
+              <div class="project-thumb-glow"></div>
+            </div>
+            <div class="project-body">
+              <h3>Hotel Website</h3>
+              <p>Room booking flow, gallery, and amenities page designed to convert browsers into bookings.</p>
+              <div class="badge-row">
+                <span class="badge">HTML</span><span class="badge">CSS</span><span class="badge">JS</span>
+              </div>
+              <div class="project-links">
+                <button type="button" class="link-icon js-case-study-btn"><i class="fa-solid fa-magnifying-glass-chart"></i> Case Study</button>
+                <a href="#" class="link-icon"><i class="fa-brands fa-github"></i> Code</a>
+                <a href="#" class="link-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal-on-scroll" data-case-problem="The company's site was outdated and wasn't generating any inbound leads." data-case-approach="Rebuilt service pages around clear calls to action and added a lead-capture contact system connected directly to the sales inbox." data-case-result="Replace with the real outcome — e.g. inbound lead volume before vs. after launch.">
+            <div class="project-thumb" data-label="Business Website">
+              <div class="project-thumb-glow"></div>
+            </div>
+            <div class="project-body">
+              <h3>Business Website</h3>
+              <p>Corporate site with service pages, case studies, and a lead-capture contact system.</p>
+              <div class="badge-row">
+                <span class="badge">Node.js</span><span class="badge">Express</span><span class="badge">REST API</span>
+              </div>
+              <div class="project-links">
+                <button type="button" class="link-icon js-case-study-btn"><i class="fa-solid fa-magnifying-glass-chart"></i> Case Study</button>
+                <a href="#" class="link-icon"><i class="fa-brands fa-github"></i> Code</a>
+                <a href="#" class="link-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal-on-scroll" data-case-problem="An individual needed a portfolio that stood out from generic template sites without a heavy CMS to maintain." data-case-approach="Designed a motion-driven, single-page layout with a glass-panel visual system and scroll-based reveals, built dependency-free." data-case-result="Replace with the real outcome — e.g. interview or client inquiry rate after sharing the new portfolio.">
+            <div class="project-thumb" data-label="Portfolio Website">
+              <div class="project-thumb-glow"></div>
+            </div>
+            <div class="project-body">
+              <h3>Portfolio Website</h3>
+              <p>Motion-driven personal portfolio with scroll reveals and a glass-panel design system.</p>
+              <div class="badge-row">
+                <span class="badge">HTML</span><span class="badge">CSS</span><span class="badge">JS</span>
+              </div>
+              <div class="project-links">
+                <button type="button" class="link-icon js-case-study-btn"><i class="fa-solid fa-magnifying-glass-chart"></i> Case Study</button>
+                <a href="#" class="link-icon"><i class="fa-brands fa-github"></i> Code</a>
+                <a href="#" class="link-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal-on-scroll" data-case-problem="An AI product needed a launch page that could explain a technical tool to a non-technical audience." data-case-approach="Built a conversion-focused landing page with animated product demos and copy structured around the visitor's problem, not the feature list." data-case-result="Replace with the real outcome — e.g. signup conversion rate from the launch page.">
+            <div class="project-thumb" data-label="AI Landing Page">
+              <div class="project-thumb-glow"></div>
+            </div>
+            <div class="project-body">
+              <h3>AI Landing Page</h3>
+              <p>Product launch page for an AI tool, with animated demos and conversion-focused copy.</p>
+              <div class="badge-row">
+                <span class="badge">JS</span><span class="badge">Node.js</span><span class="badge">API Integration</span>
+              </div>
+              <div class="project-links">
+                <button type="button" class="link-icon js-case-study-btn"><i class="fa-solid fa-magnifying-glass-chart"></i> Case Study</button>
+                <a href="#" class="link-icon"><i class="fa-brands fa-github"></i> Code</a>
+                <a href="#" class="link-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal-on-scroll" data-case-problem="The client needed a lightweight store without the overhead (or monthly fees) of a full platform like Shopify." data-case-approach="Built a custom catalog, cart, and checkout flow on a dependency-free frontend, keeping page weight and load time low." data-case-result="Replace with the real outcome — e.g. page load time vs. their previous platform, or checkout completion rate.">
+            <div class="project-thumb" data-label="E-commerce Store">
+              <div class="project-thumb-glow"></div>
+            </div>
+            <div class="project-body">
+              <h3>E-commerce Store</h3>
+              <p>Product catalog, cart, and checkout flow with a lightweight, dependency-free frontend.</p>
+              <div class="badge-row">
+                <span class="badge">Node.js</span><span class="badge">Express</span><span class="badge">JS</span>
+              </div>
+              <div class="project-links">
+                <button type="button" class="link-icon js-case-study-btn"><i class="fa-solid fa-magnifying-glass-chart"></i> Case Study</button>
+                <a href="#" class="link-icon"><i class="fa-brands fa-github"></i> Code</a>
+                <a href="#" class="link-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal-on-scroll" data-case-problem="The team was checking multiple disconnected tools to understand what was happening in their product in real time." data-case-approach="Built a single real-time analytics dashboard with live data updates and a dense, dark UI designed for at-a-glance scanning." data-case-result="Replace with the real outcome — e.g. time saved per day not switching between tools.">
+            <div class="project-thumb" data-label="Dashboard">
+              <div class="project-thumb-glow"></div>
+            </div>
+            <div class="project-body">
+              <h3>Dashboard</h3>
+              <p>Real-time analytics dashboard with live data updates and a dark, data-dense UI.</p>
+              <div class="badge-row">
+                <span class="badge">Node.js</span><span class="badge">REST API</span><span class="badge">JS</span>
+              </div>
+              <div class="project-links">
+                <button type="button" class="link-icon js-case-study-btn"><i class="fa-solid fa-magnifying-glass-chart"></i> Case Study</button>
+                <a href="#" class="link-icon"><i class="fa-brands fa-github"></i> Code</a>
+                <a href="#" class="link-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <p class="projects-empty" id="projectsEmpty" hidden>No projects match your search — try a different keyword or filter.</p>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="section section-alt" id="services">
+      <div class="container">
+        <p class="eyebrow reveal-on-scroll">// 04 services</p>
+        <h2 class="section-title reveal-on-scroll">What I can build for you</h2>
+
+        <div class="services-grid">
+          <div class="service-card reveal-on-scroll">
+            <div class="service-num">01</div>
+            <i class="fa-solid fa-building service-icon"></i>
+            <h3>Business Websites</h3>
+            <p>Professional sites that establish credibility and convert visitors into leads.</p>
+          </div>
+          <div class="service-card reveal-on-scroll">
+            <div class="service-num">02</div>
+            <i class="fa-solid fa-rocket service-icon"></i>
+            <h3>Landing Pages</h3>
+            <p>High-conversion single pages for product launches and campaigns.</p>
+          </div>
+          <div class="service-card reveal-on-scroll">
+            <div class="service-num">03</div>
+            <i class="fa-solid fa-user-tie service-icon"></i>
+            <h3>Portfolio Websites</h3>
+            <p>Personal and creative portfolios that showcase your work distinctly.</p>
+          </div>
+          <div class="service-card reveal-on-scroll">
+            <div class="service-num">04</div>
+            <i class="fa-solid fa-paintbrush service-icon"></i>
+            <h3>Website Redesign</h3>
+            <p>Modernizing outdated sites without losing what already works.</p>
+          </div>
+          <div class="service-card reveal-on-scroll">
+            <div class="service-num">05</div>
+            <i class="fa-solid fa-screwdriver-wrench service-icon"></i>
+            <h3>Website Maintenance</h3>
+            <p>Ongoing updates, content changes, and monitoring after launch.</p>
+          </div>
+          <div class="service-card reveal-on-scroll">
+            <div class="service-num">06</div>
+            <i class="fa-solid fa-bug service-icon"></i>
+            <h3>Bug Fixing</h3>
+            <p>Fast, precise fixes for broken layouts, scripts, and integrations.</p>
+          </div>
+          <div class="service-card reveal-on-scroll">
+            <div class="service-num">07</div>
+            <i class="fa-solid fa-gauge-high service-icon"></i>
+            <h3>Performance Optimization</h3>
+            <p>Faster load times, leaner assets, better Core Web Vitals.</p>
+          </div>
+          <div class="service-card reveal-on-scroll">
+            <div class="service-num">08</div>
+            <i class="fa-solid fa-plug service-icon"></i>
+            <h3>API Integration</h3>
+            <p>Connecting your site to payment, email, and third-party services.</p>
+          </div>
+        </div>
+
+        <div class="deposit-cta glass reveal-on-scroll" id="depositCta">
+          <div>
+            <h3>Ready to start?</h3>
+            <p>Lock in your spot in the queue with a deposit — the rest is agreed once scope is confirmed.</p>
+          </div>
+          <div class="deposit-cta-action">
+            <input type="number" id="depositAmount" min="10" step="1" value="50" aria-label="Deposit amount in USD">
+            <span class="deposit-currency">USD</span>
+            <button type="button" class="btn btn-primary magnetic" id="depositPayBtn">
+              <i class="fa-solid fa-lock"></i><span>Pay Deposit</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHY HIRE ME ============ -->
+    <section class="section" id="why">
+      <div class="container">
+        <p class="eyebrow reveal-on-scroll">// 05 why hire me</p>
+        <h2 class="section-title reveal-on-scroll">Why clients choose to work with me</h2>
+
+        <div class="why-grid">
+          <div class="why-item reveal-on-scroll">
+            <i class="fa-solid fa-calendar-check why-icon"></i>
+            <h3>Timeline Delivery</h3>
+            <p>Projects ship on the date we agree on, with progress updates along the way.</p>
+          </div>
+          <div class="why-item reveal-on-scroll">
+            <i class="fa-solid fa-code why-icon"></i>
+            <h3>Clean Code</h3>
+            <p>Readable, organized, and documented — easy for any developer to pick up later.</p>
+          </div>
+          <div class="why-item reveal-on-scroll">
+            <i class="fa-solid fa-mobile-screen-button why-icon"></i>
+            <h3>Responsive Design</h3>
+            <p>Looks and works flawlessly on every screen, from phone to desktop.</p>
+          </div>
+          <div class="why-item reveal-on-scroll">
+            <i class="fa-solid fa-magnifying-glass why-icon"></i>
+            <h3>SEO Friendly</h3>
+            <p>Semantic structure and metadata built in from the first commit.</p>
+          </div>
+          <div class="why-item reveal-on-scroll">
+            <i class="fa-solid fa-bolt why-icon"></i>
+            <h3>Fast Loading</h3>
+            <p>Optimized assets and lean code for sub-second, snappy page loads.</p>
+          </div>
+          <div class="why-item reveal-on-scroll">
+            <i class="fa-solid fa-comments why-icon"></i>
+            <h3>Professional Communication</h3>
+            <p>Clear updates, honest timelines, and quick responses throughout.</p>
+          </div>
+          <div class="why-item reveal-on-scroll">
+            <i class="fa-solid fa-wand-magic-sparkles why-icon"></i>
+            <h3>Modern UI</h3>
+            <p>Interfaces that feel current, polished, and considered in every detail.</p>
+          </div>
+          <div class="why-item reveal-on-scroll">
+            <i class="fa-solid fa-diagram-project why-icon"></i>
+            <h3>Maintainable Code</h3>
+            <p>Structured for growth — new features won't mean starting over.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="section section-alt" id="testimonials">
+      <div class="container">
+        <p class="eyebrow reveal-on-scroll">// 06 testimonials</p>
+        <h2 class="section-title reveal-on-scroll">What clients say</h2>
+
+        <div class="testimonial-slider reveal-on-scroll">
+          <div class="testimonial-track" id="testimonialTrack">
+            <div class="testimonial-slide">
+              <i class="fa-solid fa-quote-left quote-icon"></i>
+              <p class="testimonial-text">Foster delivered our site two days ahead of schedule and it loads noticeably faster than our old one. Communication was clear from day one.</p>
+              <div class="testimonial-author">
+                <div class="avatar">JM</div>
+                <div>
+                  <p class="author-name">Jordan Mensah</p>
+                  <p class="author-role">Founder, Local Roots Café</p>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-slide">
+              <i class="fa-solid fa-quote-left quote-icon"></i>
+              <p class="testimonial-text">The redesign completely changed how customers perceive our brand. Clean code, no bugs, and Foster explained every decision along the way.</p>
+              <div class="testimonial-author">
+                <div class="avatar">AT</div>
+                <div>
+                  <p class="author-name">Amara Tetteh</p>
+                  <p class="author-role">Operations Lead, Horizon Freight</p>
+                </div>
+              </div>
+            </div>
+            <div class="testimonial-slide">
+              <i class="fa-solid fa-quote-left quote-icon"></i>
+              <p class="testimonial-text">Best freelance experience we've had. The dashboard he built handles our real-time data without a single hiccup, even under load.</p>
+              <div class="testimonial-author">
+                <div class="avatar">DK</div>
+                <div>
+                  <p class="author-name">David Koomson</p>
+                  <p class="author-role">CTO, Pulse Analytics</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-controls">
+            <button class="testimonial-btn" id="testimonialPrev" aria-label="Previous testimonial"><i class="fa-solid fa-arrow-left"></i></button>
+            <div class="testimonial-dots" id="testimonialDots"></div>
+            <button class="testimonial-btn" id="testimonialNext" aria-label="Next testimonial"><i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+
+        <div class="community-testimonials" id="communityTestimonials" hidden></div>
+
+        <div class="leave-testimonial-row reveal-on-scroll">
+          <button type="button" class="btn btn-outline magnetic" id="leaveTestimonialBtn">
+            <i class="fa-regular fa-star"></i><span>Leave a Testimonial</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section" id="faq">
+      <div class="container container-narrow">
+        <p class="eyebrow reveal-on-scroll">// 07 faq</p>
+        <h2 class="section-title reveal-on-scroll">Common questions</h2>
+
+        <div class="faq-list">
+          <div class="faq-item reveal-on-scroll">
+            <button class="faq-question" aria-expanded="false">
+              <span>What's your typical project timeline?</span>
+              <i class="fa-solid fa-chevron-down faq-chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Most landing pages take 3–5 days, business websites 1–2 weeks, and full web applications 2–6 weeks depending on scope. You'll get a specific timeline after we scope the project.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal-on-scroll">
+            <button class="faq-question" aria-expanded="false">
+              <span>Do you offer revisions?</span>
+              <i class="fa-solid fa-chevron-down faq-chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Yes — every project includes rounds of revisions so the final result matches your vision, not just the initial brief.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal-on-scroll">
+            <button class="faq-question" aria-expanded="false">
+              <span>Will my website be mobile-friendly?</span>
+              <i class="fa-solid fa-chevron-down faq-chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Always. Every site I build is tested across phone, tablet, and desktop breakpoints before delivery.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal-on-scroll">
+            <button class="faq-question" aria-expanded="false">
+              <span>Can you work with my existing codebase?</span>
+              <i class="fa-solid fa-chevron-down faq-chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Yes — I regularly take over existing projects for redesigns, bug fixes, and new features without a full rebuild.</p>
+            </div>
+          </div>
+          <div class="faq-item reveal-on-scroll">
+            <button class="faq-question" aria-expanded="false">
+              <span>What do you need from me to get started?</span>
+              <i class="fa-solid fa-chevron-down faq-chevron"></i>
+            </button>
+            <div class="faq-answer">
+              <p>A short brief on your goals, any brand assets you have, and a budget range. I'll follow up with questions and a proposal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section" id="contact">
+      <div class="container">
+        <p class="eyebrow reveal-on-scroll">// 08 contact</p>
+        <h2 class="section-title reveal-on-scroll">Let's build something</h2>
+        <p class="section-sub reveal-on-scroll">Tell me about your project — I typically respond within 24 hours.</p>
+
+        <div class="contact-grid">
+          <form class="contact-form glass reveal-on-scroll" id="contactForm" novalidate>
+            <div class="hp-field" aria-hidden="true">
+              <label for="website">Leave this field empty</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name"><i class="fa-solid fa-user"></i> Name</label>
+                <input type="text" id="name" name="name" placeholder="Your full name" required>
+                <span class="form-error" data-error-for="name"></span>
+              </div>
+              <div class="form-group">
+                <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                <span class="form-error" data-error-for="email"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="project"><i class="fa-solid fa-diagram-project"></i> Project Type</label>
+                <select id="project" name="project" required>
+                  <option value="" disabled selected>Select a project type</option>
+                  <option value="business">Business Website</option>
+                  <option value="landing">Landing Page</option>
+                  <option value="portfolio">Portfolio Website</option>
+                  <option value="webapp">Web Application</option>
+                  <option value="ecommerce">E-commerce Store</option>
+                  <option value="dashboard">Dashboard / SaaS Platform</option>
+                  <option value="game">Game Development</option>
+                  <option value="ai">AI / Automation Tool</option>
+                  <option value="edtech">Educational Platform</option>
+                  <option value="mobileapp">Mobile App / PWA</option>
+                  <option value="redesign">Redesign / Maintenance</option>
+                  <option value="api">API Integration</option>
+                  <option value="other">Other</option>
+                </select>
+                <span class="form-error" data-error-for="project"></span>
+              </div>
+              <div class="form-group">
+                <label for="budget"><i class="fa-solid fa-sack-dollar"></i> Budget</label>
+                <select id="budget" name="budget" required disabled>
+                  <option value="" disabled selected>Select project type first</option>
+                </select>
+                <span class="form-error" data-error-for="budget"></span>
+                <span class="currency-note" id="currencyNote"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message"><i class="fa-solid fa-comment-dots"></i> Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell me about your project, goals, and timeline..." required></textarea>
+              <span class="form-error" data-error-for="message"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-submit magnetic" id="submitBtn">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span class="btn-submit-text">Send Message</span>
+              <span class="btn-submit-spinner" aria-hidden="true"></span>
+            </button>
+
+            <div class="form-success" id="formSuccess">
+              <i class="fa-solid fa-circle-check"></i>
+              <span id="formSuccessText">Message sent — I'll get back to you within 24 hours.</span>
+            </div>
+          </form>
+
+          <div class="contact-side reveal-on-scroll">
+            <div class="queue-banner glass" id="queueBanner">
+              <i class="fa-solid fa-users"></i>
+              <div>
+                <p class="contact-info-label">Current Queue</p>
+                <p class="contact-info-value" id="queueCount">Loading…</p>
+              </div>
+            </div>
+
+            <div class="contact-info-card glass">
+              <i class="fa-solid fa-envelope"></i>
+              <div>
+                <p class="contact-info-label">Email</p>
+                <a class="contact-info-value" href="mailto:boateklabs@gmail.com" id="emailLink">boateklabs@gmail.com</a>
+              </div>
+              <button type="button" class="copy-btn" id="copyEmailBtn" aria-label="Copy email address" title="Copy email address">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+            <div class="contact-info-card glass">
+              <i class="fa-solid fa-phone"></i>
+              <div>
+                <p class="contact-info-label">Phone</p>
+                <a class="contact-info-value" href="tel:+233537045514">+233 53 704 5514</a>
+              </div>
+              <a class="copy-btn" id="whatsappChatBtn" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+              </a>
+            </div>
+            <button type="button" class="contact-info-card glass" id="saveContactBtn">
+              <i class="fa-solid fa-address-card"></i>
+              <div>
+                <p class="contact-info-label">Save Contact</p>
+                <p class="contact-info-value">Download as vCard (.vcf)</p>
+              </div>
+            </button>
+            <a href="https://chat.whatsapp.com/Lwqd1vUnb4IHvlBtaA9sjX" target="_blank" rel="noopener" class="contact-info-card glass whatsapp-card">
+              <i class="fa-brands fa-whatsapp"></i>
+              <div>
+                <p class="contact-info-label">Community</p>
+                <p class="contact-info-value">Join the WhatsApp Group</p>
+              </div>
+            </a>
+            <div class="contact-info-card glass">
+              <i class="fa-solid fa-clock"></i>
+              <div>
+                <p class="contact-info-label">Working Hours</p>
+                <p class="contact-info-value">Mon – Sat, flexible time zones</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#home" class="nav-logo">
+          <span class="nav-logo-bracket">&lt;</span>Foster<span class="nav-logo-bracket">/&gt;</span>
+        </a>
+        <p>Building fast, modern &amp; high-performance websites.</p>
+        <a href="blog.html" class="footer-blog-link"><i class="fa-solid fa-pen-nib"></i> Read the blog</a>
+      </div>
+
+      <div class="footer-social">
+        <a href="https://github.com/Huniso-Church-Of-Pentecost" target="_blank" rel="noopener" aria-label="GitHub" class="social-icon"><i class="fa-brands fa-github"></i></a>
+        <a href="#" aria-label="LinkedIn" class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="https://chat.whatsapp.com/Lwqd1vUnb4IHvlBtaA9sjX" target="_blank" rel="noopener" aria-label="WhatsApp Group" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="mailto:boateklabs@gmail.com" aria-label="Email" class="social-icon"><i class="fa-solid fa-envelope"></i></a>
+        <a href="tel:+233537045514" aria-label="Phone" class="social-icon"><i class="fa-solid fa-phone"></i></a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; <span id="footerYear"></span> Foster / Boatek Labs. All rights reserved.</p>
+      <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+      </button>
+    </div>
+
+    <div class="container footer-utility">
+      <p class="visitor-count" id="visitorCount" aria-hidden="true"></p>
+
+      <div class="share-row">
+        <span class="share-label">Share:</span>
+        <button type="button" class="icon-btn" id="shareCopyLink" aria-label="Copy page link" title="Copy link">
+          <i class="fa-solid fa-link"></i>
+        </button>
+        <a class="icon-btn" id="shareX" href="#" target="_blank" rel="noopener" aria-label="Share on X" title="Share on X">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a class="icon-btn" id="shareLinkedin" href="#" target="_blank" rel="noopener" aria-label="Share on LinkedIn" title="Share on LinkedIn">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a class="icon-btn" id="shareWhatsapp" href="#" target="_blank" rel="noopener" aria-label="Share on WhatsApp" title="Share on WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+      </div>
+
+      <button type="button" class="icon-btn" id="accessibilityToggle" aria-label="Open accessibility options" title="Accessibility options">
+        <i class="fa-solid fa-universal-access"></i>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp button -->
+  <a href="https://chat.whatsapp.com/Lwqd1vUnb4IHvlBtaA9sjX" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Join our WhatsApp group">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- Font Awesome -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+
+  <!-- Scripts -->
+  <script src="js/particles.js" defer></script>
+  <script src="js/projectBudget.js" defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/features.js" defer></script>
+  <script src="js/growth.js" defer></script>
+</body>
+</html>

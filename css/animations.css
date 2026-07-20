@@ -1,0 +1,164 @@
+/* ==========================================================================
+   animations.css — keyframes, scroll-reveal states, micro-interactions
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------- */
+/* Scroll reveal base states                                              */
+/* ---------------------------------------------------------------------- */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: reveal-up 0.9s var(--ease) forwards;
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.reveal-on-scroll.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* stagger children of a grid automatically via inline --i custom prop set in JS */
+.skill-card.in-view,
+.project-card.in-view,
+.service-card.in-view,
+.why-item.in-view,
+.faq-item.in-view {
+  transition-delay: calc(var(--i, 0) * 60ms);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Keyframes                                                              */
+/* ---------------------------------------------------------------------- */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -24px) scale(1.06); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes scroll-line {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+
+@keyframes ripple {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0.5; }
+  100% { transform: translate(-50%, -50%) scale(18); opacity: 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(59, 111, 224, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(59, 111, 224, 0); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Magnetic button tilt hook (JS sets --mx / --my via transform)          */
+/* ---------------------------------------------------------------------- */
+.magnetic {
+  transition: transform 0.25s var(--ease-soft), box-shadow 0.3s var(--ease-soft);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Card tilt (JS sets rotateX/rotateY via inline style transform)         */
+/* ---------------------------------------------------------------------- */
+.project-card, .skill-card, .service-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Image / element reveal (clip-path wipe)                               */
+/* ---------------------------------------------------------------------- */
+.img-reveal {
+  position: relative;
+  overflow: hidden;
+}
+.img-reveal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--bg-alt);
+  transform-origin: right;
+  animation: img-wipe 1s var(--ease) forwards;
+}
+@keyframes img-wipe {
+  to { transform: scaleX(0); }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Loading screen (optional splash, controlled via JS body class)         */
+/* ---------------------------------------------------------------------- */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s var(--ease), visibility 0.6s;
+}
+.preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.preloader-mark {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  animation: pulse-fade 1.2s ease-in-out infinite;
+}
+@keyframes pulse-fade {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Toast (install prompt / offline notice, used by PWA layer)             */
+/* ---------------------------------------------------------------------- */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  background: var(--bg-alt);
+  border: 1px solid var(--surface-border);
+  border-radius: 100px;
+  padding: 12px 22px;
+  font-size: 13.5px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.6);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+.toast button {
+  color: var(--teal);
+  font-weight: 600;
+  font-size: 13px;
+}

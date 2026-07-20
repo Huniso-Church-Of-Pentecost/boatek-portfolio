@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Foster / Boatek Labs</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/features.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<div id="loginScreen" class="admin-login">
+  <form id="loginForm" class="admin-login-box glass">
+    <h1>Admin</h1>
+    <p>Sign in with your ADMIN_USER / ADMIN_PASS from server/.env</p>
+    <div class="form-group">
+      <label for="adminUser">Username</label>
+      <input type="text" id="adminUser" autocomplete="username" required>
+    </div>
+    <div class="form-group">
+      <label for="adminPass">Password</label>
+      <input type="password" id="adminPass" autocomplete="current-password" required>
+    </div>
+    <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Sign In</button>
+    <p class="admin-login-error" id="loginError" hidden></p>
+  </form>
+</div>
+
+<div id="dashboard" class="admin-dashboard" hidden>
+  <header class="admin-header">
+    <span class="admin-logo">&lt;Foster/&gt; <small>Admin</small></span>
+    <nav class="admin-tabs" id="adminTabs">
+      <button data-tab="overview" class="active">Overview</button>
+      <button data-tab="inquiries">Inquiries</button>
+      <button data-tab="bookings">Bookings</button>
+      <button data-tab="testimonials">Testimonials</button>
+      <button data-tab="blog">Blog</button>
+      <button data-tab="payments">Payments</button>
+    </nav>
+    <button id="logoutBtn" class="btn btn-outline">Log Out</button>
+  </header>
+
+  <main class="admin-main">
+    <section class="admin-panel" data-panel="overview">
+      <h2>Overview</h2>
+      <div class="admin-stats-grid" id="overviewStats"></div>
+      <canvas id="visitsChart" height="90"></canvas>
+    </section>
+
+    <section class="admin-panel" data-panel="inquiries" hidden>
+      <h2>Inquiries</h2>
+      <div class="admin-table-wrap"><table class="admin-table" id="inquiriesTable"><thead>
+        <tr><th>Date</th><th>Name</th><th>Email</th><th>Project</th><th>Budget</th><th>Message</th></tr>
+      </thead><tbody></tbody></table></div>
+    </section>
+
+    <section class="admin-panel" data-panel="bookings" hidden>
+      <h2>Bookings</h2>
+      <div class="admin-table-wrap"><table class="admin-table" id="bookingsTable"><thead>
+        <tr><th>Date</th><th>Name</th><th>Email</th><th>When</th><th>Notes</th><th>Status</th><th></th></tr>
+      </thead><tbody></tbody></table></div>
+    </section>
+
+    <section class="admin-panel" data-panel="testimonials" hidden>
+      <h2>Testimonials</h2>
+      <div class="admin-table-wrap"><table class="admin-table" id="testimonialsTable"><thead>
+        <tr><th>Date</th><th>Name</th><th>Rating</th><th>Message</th><th>Status</th><th></th></tr>
+      </thead><tbody></tbody></table></div>
+    </section>
+
+    <section class="admin-panel" data-panel="blog" hidden>
+      <h2>Blog</h2>
+      <button class="btn btn-primary" id="newPostBtn" style="margin-bottom:20px;">+ New Post</button>
+      <div class="admin-table-wrap"><table class="admin-table" id="blogTable"><thead>
+        <tr><th>Title</th><th>Status</th><th>Updated</th><th></th></tr>
+      </thead><tbody></tbody></table></div>
+    </section>
+
+    <section class="admin-panel" data-panel="payments" hidden>
+      <h2>Payments</h2>
+      <div class="admin-table-wrap"><table class="admin-table" id="paymentsTable"><thead>
+        <tr><th>Date</th><th>Reference</th><th>Amount</th><th>Email</th><th>Status</th></tr>
+      </thead><tbody></tbody></table></div>
+    </section>
+  </main>
+</div>
+
+<div class="modal-overlay" id="postModalOverlay">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-label="Edit post">
+    <div class="modal-header">
+      <div><h3 id="postModalTitle">New Post</h3></div>
+      <button type="button" class="modal-close" id="postModalClose"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="postForm">
+      <input type="hidden" id="postId">
+      <div class="form-group"><label for="postTitle">Title</label><input type="text" id="postTitle" required></div>
+      <div class="form-group"><label for="postExcerpt">Excerpt</label><input type="text" id="postExcerpt"></div>
+      <div class="form-group"><label for="postContent">Content (HTML allowed)</label><textarea id="postContent" rows="10" required></textarea></div>
+      <div class="form-group"><label><input type="checkbox" id="postPublished" style="width:auto; display:inline-block; margin-right:8px;">Published</label></div>
+      <button type="submit" class="btn btn-primary modal-submit">Save Post</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+<script src="js/admin.js" defer></script>
+</body>
+</html>

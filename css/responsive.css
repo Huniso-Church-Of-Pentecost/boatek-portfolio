@@ -1,0 +1,112 @@
+/* ==========================================================================
+   responsive.css — breakpoints: 320px, 768px, 1024px, 1440px
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------- */
+/* ≤1440px — large desktop refinement                                    */
+/* ---------------------------------------------------------------------- */
+@media (max-width: 1440px) {
+  .container { max-width: 1080px; }
+}
+
+/* ---------------------------------------------------------------------- */
+/* ≤1024px — small desktop / large tablet                                */
+/* ---------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .section { padding: 110px 0; }
+
+  .skills-grid { grid-template-columns: repeat(3, 1fr); }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+  .about-grid { grid-template-columns: 1fr; gap: 44px; }
+  .about-visual { order: -1; }
+
+  .contact-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------------------------------------------------------------------- */
+/* ≤768px — tablet                                                       */
+/* ---------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .container { padding: 0 22px; }
+
+  .nav-links { display: none; }
+  .btn-nav-cta { display: none; }
+  .hamburger { display: flex; }
+
+  .hero { min-height: 100svh; padding-top: calc(var(--nav-h) + 20px); }
+  .hero-headline { font-size: clamp(30px, 9vw, 42px); }
+  .hero-sub { font-size: 16px; }
+  .hero-cta { flex-direction: column; }
+  .hero-cta .btn { width: 100%; }
+  .hero-stats { gap: 20px; }
+  .scroll-indicator { display: none; }
+
+  .section { padding: 84px 0; }
+  .section-title { font-size: clamp(26px, 7vw, 34px); }
+
+  .about-grid { grid-template-columns: 1fr; }
+
+  .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .skill-card { padding: 24px 16px; }
+
+  .projects-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+
+  .testimonial-text { font-size: 17px; }
+
+  .form-row { grid-template-columns: 1fr; }
+  .contact-form { padding: 26px; }
+
+  .footer-inner { flex-direction: column; gap: 28px; }
+  .footer-bottom { flex-direction: column; gap: 14px; text-align: center; padding: 24px; }
+
+  .cursor-glow { display: none; }
+
+  .whatsapp-float { width: 50px; height: 50px; font-size: 22px; bottom: 20px; right: 18px; }
+}
+
+/* ---------------------------------------------------------------------- */
+/* ≤480px — small phones                                                 */
+/* ---------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .container { padding: 0 18px; }
+
+  .hero-stats { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .hero-stat-divider { display: none; }
+
+  .eyebrow { font-size: 12px; }
+  .section-sub { font-size: 15.5px; }
+
+  .code-window-body { font-size: 12px; padding: 20px 16px; }
+
+  .badge-row { gap: 6px; }
+  .badge { font-size: 10.5px; padding: 4px 9px; }
+
+  .testimonial-controls { gap: 14px; }
+}
+
+/* ---------------------------------------------------------------------- */
+/* ≤320px — minimum supported width                                     */
+/* ---------------------------------------------------------------------- */
+@media (max-width: 320px) {
+  .container { padding: 0 14px; }
+  .hero-headline { font-size: 28px; }
+  .nav-logo { font-size: 17px; }
+  .btn { padding: 13px 22px; font-size: 13.5px; }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Landscape phones — short viewport height                              */
+/* ---------------------------------------------------------------------- */
+@media (max-height: 480px) and (orientation: landscape) {
+  .hero { min-height: auto; padding: 120px 0 60px; }
+  .scroll-indicator { display: none; }
+
+  .mobile-menu-links { gap: 14px; }
+  .mobile-menu-links a { font-size: 19px; }
+  .mobile-menu-utility { margin-top: 20px; }
+}

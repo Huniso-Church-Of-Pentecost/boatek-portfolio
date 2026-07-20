@@ -1,0 +1,128 @@
+{
+  "projects": [
+    { "key": "business",   "label": "Business Website",
+      "budgets": [
+        { "key": "lt500",     "min": 0,    "max": 500 },
+        { "key": "500-1500",  "min": 500,  "max": 1500 },
+        { "key": "1500-5000", "min": 1500, "max": 5000 },
+        { "key": "gt5000",    "min": 5000, "max": null }
+      ] },
+    { "key": "landing",    "label": "Landing Page",
+      "budgets": [
+        { "key": "lt250",     "min": 0,    "max": 250 },
+        { "key": "250-750",   "min": 250,  "max": 750 },
+        { "key": "750-2000",  "min": 750,  "max": 2000 },
+        { "key": "gt2000",    "min": 2000, "max": null }
+      ] },
+    { "key": "portfolio",  "label": "Portfolio Website",
+      "budgets": [
+        { "key": "lt300",     "min": 0,    "max": 300 },
+        { "key": "300-800",   "min": 300,  "max": 800 },
+        { "key": "800-2000",  "min": 800,  "max": 2000 },
+        { "key": "gt2000",    "min": 2000, "max": null }
+      ] },
+    { "key": "webapp",     "label": "Web Application",
+      "budgets": [
+        { "key": "1000-3000",  "min": 1000,  "max": 3000 },
+        { "key": "3000-8000",  "min": 3000,  "max": 8000 },
+        { "key": "8000-20000", "min": 8000,  "max": 20000 },
+        { "key": "gt20000",    "min": 20000, "max": null }
+      ] },
+    { "key": "ecommerce",  "label": "E-commerce Store",
+      "budgets": [
+        { "key": "1500-4000",   "min": 1500,  "max": 4000 },
+        { "key": "4000-10000",  "min": 4000,  "max": 10000 },
+        { "key": "10000-25000", "min": 10000, "max": 25000 },
+        { "key": "gt25000",     "min": 25000, "max": null }
+      ] },
+    { "key": "dashboard",  "label": "Dashboard / SaaS Platform",
+      "budgets": [
+        { "key": "1500-4000",   "min": 1500,  "max": 4000 },
+        { "key": "4000-10000",  "min": 4000,  "max": 10000 },
+        { "key": "10000-25000", "min": 10000, "max": 25000 },
+        { "key": "gt25000",     "min": 25000, "max": null }
+      ] },
+    { "key": "game",       "label": "Game Development",
+      "budgets": [
+        { "key": "2000-5000",   "min": 2000,  "max": 5000 },
+        { "key": "5000-15000",  "min": 5000,  "max": 15000 },
+        { "key": "15000-40000", "min": 15000, "max": 40000 },
+        { "key": "gt40000",     "min": 40000, "max": null }
+      ] },
+    { "key": "ai",         "label": "AI / Automation Tool",
+      "budgets": [
+        { "key": "2000-6000",   "min": 2000,  "max": 6000 },
+        { "key": "6000-15000",  "min": 6000,  "max": 15000 },
+        { "key": "15000-35000", "min": 15000, "max": 35000 },
+        { "key": "gt35000",     "min": 35000, "max": null }
+      ] },
+    { "key": "edtech",     "label": "Educational Platform",
+      "budgets": [
+        { "key": "2000-6000",   "min": 2000,  "max": 6000 },
+        { "key": "6000-15000",  "min": 6000,  "max": 15000 },
+        { "key": "15000-35000", "min": 15000, "max": 35000 },
+        { "key": "gt35000",     "min": 35000, "max": null }
+      ] },
+    { "key": "mobileapp",  "label": "Mobile App / PWA",
+      "budgets": [
+        { "key": "1500-4000",   "min": 1500,  "max": 4000 },
+        { "key": "4000-10000",  "min": 4000,  "max": 10000 },
+        { "key": "10000-25000", "min": 10000, "max": 25000 },
+        { "key": "gt25000",     "min": 25000, "max": null }
+      ] },
+    { "key": "redesign",   "label": "Redesign / Maintenance",
+      "budgets": [
+        { "key": "lt500",     "min": 0,    "max": 500 },
+        { "key": "500-1500",  "min": 500,  "max": 1500 },
+        { "key": "1500-4000", "min": 1500, "max": 4000 },
+        { "key": "gt4000",    "min": 4000, "max": null }
+      ] },
+    { "key": "api",        "label": "API Integration",
+      "budgets": [
+        { "key": "lt500",     "min": 0,    "max": 500 },
+        { "key": "500-2000",  "min": 500,  "max": 2000 },
+        { "key": "2000-6000", "min": 2000, "max": 6000 },
+        { "key": "gt6000",    "min": 6000, "max": null }
+      ] },
+    { "key": "other",      "label": "Other",
+      "budgets": [
+        { "key": "lt500",     "min": 0,    "max": 500 },
+        { "key": "500-1500",  "min": 500,  "max": 1500 },
+        { "key": "1500-5000", "min": 1500, "max": 5000 },
+        { "key": "gt5000",    "min": 5000, "max": null }
+      ] }
+  ],
+
+  "_currencyNote": "Rates below are static approximations for display purposes only, not live forex data. Update periodically or swap in a live FX API for production accuracy.",
+  "currencyRates": {
+    "USD": 1,
+    "GHS": 15.2,
+    "NGN": 1550,
+    "KES": 129,
+    "ZAR": 18.3,
+    "GBP": 0.79,
+    "EUR": 0.92,
+    "CAD": 1.36,
+    "AUD": 1.52,
+    "INR": 83.2
+  },
+  "currencySymbols": {
+    "USD": "$",
+    "GHS": "GH₵",
+    "NGN": "₦",
+    "KES": "KSh",
+    "ZAR": "R",
+    "GBP": "£",
+    "EUR": "€",
+    "CAD": "CA$",
+    "AUD": "A$",
+    "INR": "₹"
+  },
+  "countryCurrencyMap": {
+    "GH": "GHS", "NG": "NGN", "KE": "KES", "ZA": "ZAR",
+    "GB": "GBP", "US": "USD", "CA": "CAD", "AU": "AUD", "IN": "INR",
+    "DE": "EUR", "FR": "EUR", "ES": "EUR", "IT": "EUR", "NL": "EUR",
+    "IE": "EUR", "PT": "EUR", "BE": "EUR", "AT": "EUR", "FI": "EUR"
+  },
+  "defaultCurrency": "USD"
+}
