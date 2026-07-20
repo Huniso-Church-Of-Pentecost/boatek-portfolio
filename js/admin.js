@@ -14,17 +14,22 @@
   }
 
   async function adminFetch(path, options = {}) {
-    const res = await fetch(path, {
-      ...options,
-      headers: { ...(options.headers || {}), 'Content-Type': 'application/json', ...getAuthHeader() }
-    });
+    let res;
+    try {
+      res = await fetch(path, {
+        ...options,
+        headers: { ...(options.headers || {}), 'Content-Type': 'application/json', ...getAuthHeader() }
+      });
+    } catch (networkErr) {
+      throw new Error(`Network error reaching ${path}: ${networkErr.message}`);
+    }
     if (res.status === 401) {
       sessionStorage.removeItem('adminAuth');
       showLogin('Session expired — please sign in again.');
-      throw new Error('Unauthorized');
+      throw new Error('Unauthorized (401)');
     }
     const data = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(data.message || 'Request failed.');
+    if (!res.ok) throw new Error(`${data.message || 'Request failed.'} (HTTP ${res.status})`);
     return data;
   }
 
@@ -56,8 +61,9 @@
       showDashboard();
     } catch (err) {
       sessionStorage.removeItem('adminAuth');
-      loginError.textContent = 'Invalid credentials.';
+      loginError.textContent = err.message || 'Sign-in failed.';
       loginError.hidden = false;
+      console.error('[admin] Login failed:', err);
     }
   });
 
