@@ -27,7 +27,6 @@ function adminAuth(req, res, next) {
   const [scheme, encoded] = header.split(' ');
 
   if (scheme !== 'Basic' || !encoded) {
-    res.set('WWW-Authenticate', 'Basic realm="Admin"');
     return res.status(401).json({ message: 'Authentication required.' });
   }
 
@@ -42,7 +41,6 @@ function adminAuth(req, res, next) {
     return next();
   }
 
-  res.set('WWW-Authenticate', 'Basic realm="Admin"');
   return res.status(401).json({ message: 'Invalid credentials.' });
 }
 

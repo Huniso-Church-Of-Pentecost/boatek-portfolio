@@ -11,6 +11,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font-body);
   justify-content: center;
   padding: 20px;
 }
+.admin-login[hidden] { display: none; }
 .admin-login-box {
   width: 100%;
   max-width: 360px;
